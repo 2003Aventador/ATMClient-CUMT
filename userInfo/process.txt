@@ -1,15 +1,23 @@
-App->Welcome->PleaseWait3s->ChooseLanguage->InputAccount->InputPassword->ServiceSelection
+
+--------------------------------------------------------程序流程图-------------------------------------------------------
+
+App -> IdentifyEntry -> |-  RegisterUsers
+                        |-  Welcome->PleaseWait3s->ChooseLanguage->InputAccount->InputPassword->ServiceSelection->...
 
                                                   |-    CardReturned
-   |- CardSlot->PutCash   -   DepositSuccessfully |-    ServiceSelection                         -|
-   |  CardSlot->GetCash   -   WaitForGetMoney                                                     |
-   |  TransferInputAccount -  TransferInputAmount - TransferInfoConfirmed - TransferSuccessfully  |
-                              |-    CardSlot->GetCash                                             | ->  ServiceSelection
-                              |     CardSlot->PutCash                                             |
--> |  EnquiryBalance    -     |     Transfer                                                      |
-                              |     return                                                        |
-                              |-    CardReturned
-   |  ChangePassword  -  InputOldPassword - InputNewPassword - InputNewPassConfirmed             -|
-   |  MoreOption      |-    ContactMe
-                      |-    PrintVoucher
-   |- CardReturned
+      |- CardSlot->PutCash   -   DepositSuccessfully |-    ServiceSelection                         -|
+      |  CardSlot->GetCash   -   WaitForGetMoney                                                     |
+      |  TransferInputAccount -  TransferInputAmount - TransferInfoConfirmed - TransferSuccessfully  |
+                                 |-    CardSlot->GetCash                                             | ->  ...
+                                 |     CardSlot->PutCash                                             |
+...-> |  EnquiryBalance    -     |     Transfer                                                      |
+                                 |     return                                                        |
+                                 |-    CardReturned
+      |  ChangePassword  -  InputOldPassword - InputNewPassword - InputNewPassConfirmed             -|
+                         |-    return
+      |  MoreOption      |     ContactMe
+                         |-    PrintVoucher
+      |- CardReturned
+
+
+...->   ServiceSelection

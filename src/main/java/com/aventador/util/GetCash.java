@@ -2,6 +2,7 @@ package com.aventador.util;
 
 import com.aventador.domain.CardSlot;
 import com.aventador.clientUI.WaitForGetMoney;
+import com.aventador.domain.Transaction;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -38,7 +39,7 @@ public class GetCash extends JFrame {
                     //判断用户是否能取款成功
 
                     //生成虚假测试信息
-                    CustomerInfoUtil.makeTestInfo();
+                    //CustomerInfoUtil.makeTestInfo();
                     //用户可取款金额
                     double customerAvailable = CustomerInfoUtil.customerTodayAvailableCash;
                     try {
@@ -51,6 +52,7 @@ public class GetCash extends JFrame {
                             CustomerInfoUtil.user.setBalance(CustomerInfoUtil.user.getBalance() - amount);
                             CardSlot.totalCash -= amount;
                             CustomerInfoUtil.customerTodayAvailableCash -= amount;
+                            TransactionDetails.writeInfo(2, amount);
                             System.out.println("source==GetCash 取款后user信息为：" + CustomerInfoUtil.user.toString());
                             System.out.println("source==GetCash 取款后取款机可用余额为：" + CardSlot.totalCash);
                             System.out.println("========================================================");

@@ -23,8 +23,8 @@ public class Welcome extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //put your code here
-                new PleaseWait3s();
                 dispose();
+                new PleaseWait3s();
             }
         });
         timer.setRepeats(false); // Set to false to only execute once

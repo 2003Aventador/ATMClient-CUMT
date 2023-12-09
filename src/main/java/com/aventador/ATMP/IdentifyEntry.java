@@ -9,12 +9,12 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class identifyEntry extends JFrame implements MouseListener {
+public class IdentifyEntry extends JFrame implements MouseListener {
 
     JButton jb1 = new JButton("管理员");
     JButton jb2 = new JButton("用户");
 
-    public identifyEntry() {
+    public IdentifyEntry() {
 
         initJFrame();
 
@@ -82,9 +82,11 @@ public class identifyEntry extends JFrame implements MouseListener {
         Object source = e.getSource();
         if (source == jb1) {
             //管理员登录
+            dispose();
             new RegisterUsers();
         } else if (source == jb2) {
             //用户登录
+            dispose();
             new Welcome();
         }
 

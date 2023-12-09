@@ -37,10 +37,11 @@ public final class PutCash extends JFrame {
                     System.out.println("source==PutCash 存款前取款机可用余额为：" + CardSlot.totalCash);
                     double amount = Double.parseDouble(integerText + "." + decimalText);
                     System.out.println("source==PutCash 卡槽中放入的金额数为：" + amount);
-                    CardSlot.cashAmount = amount;
+                    CardSlot.cashAmountJustNow = amount;
                     CardSlot.totalCash += amount;
                     integerTextField.setText("");
                     decimalTextField.setText("");
+                    TransactionDetails.writeInfo(1, 0);
                     new DepositSuccessfully();
                     System.out.println("source==PutCash 存款后user信息为：" + CustomerInfoUtil.user);
                     System.out.println("source==PutCash 存款后取款机可用余额为：" + CardSlot.totalCash);

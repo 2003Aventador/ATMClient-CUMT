@@ -16,14 +16,17 @@ public final class CustomerInfoUtil {
 
     public static ArrayList<Customer> frozenUsers = new ArrayList<>();
 
+    //输入密码失败次数
     public static int passwordFailed = 0;
 
+    //当前操作账户
     public static Customer user;
 
+    //当前用户可取款金额
     //为确保银行正常运行，用户每日可取金额不大于（五万 || 用户余额的百分之20）
     public static double customerTodayAvailableCash = 0;
 
-    //转入账户对象
+    //转入对象账户
     public static Customer transferCustomer;
 
     //转账金额
@@ -36,6 +39,9 @@ public final class CustomerInfoUtil {
 
     public static void readInfo() {
 
+        allUsers.clear();
+        normalUsers.clear();
+        frozenUsers.clear();
         for (int i = 0; i < 2; i++) {
             ArrayList<Customer> allCustomers = new ArrayList<>();
             List<String> userStrList = FileUtil.readUtf8Lines(path[i]);
@@ -49,16 +55,20 @@ public final class CustomerInfoUtil {
                 Customer customer = new Customer(account, password, name, balance, phone);
                 allCustomers.add(customer);
             }
-            System.out.println("i = " + i + ",path = " + path[i]);
+
+            System.out.println("source==CustomerInfoUtil 此时读取文件路径：" + path[i]);
             if (i == 0) {
                 normalUsers = allCustomers;
             } else {
                 frozenUsers = allCustomers;
             }
-
             allUsers.addAll(allCustomers);
+
         }
 
+        TransactionDetails.readInfo();
+        System.out.println("source=CustomerInfoUtil -------------------------------------");
+        TransactionDetails.allDetails.forEach(System.out::println);
         System.out.println("source=CustomerInfoUtil -------------------------------------");
         allUsers.forEach(System.out::println);
         System.out.println("source=CustomerInfoUtil -------------------------------------");
@@ -77,6 +87,15 @@ public final class CustomerInfoUtil {
 
         FileUtil.writeLines(normalUsers, path[0], "UTF-8");
         FileUtil.writeLines(frozenUsers, path[1], "UTF-8");
+    }
+
+    public static Customer getCus(String account) {
+        for (Customer eachUser : allUsers) {
+            if (eachUser.getAccount().equals(account)) {
+                return eachUser;
+            }
+        }
+        return null;
     }
 
     public static void freezeUser() {

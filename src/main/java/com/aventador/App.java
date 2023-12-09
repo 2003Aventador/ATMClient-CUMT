@@ -1,12 +1,12 @@
 package com.aventador;
 
-import com.aventador.ATMP.identifyEntry;
+import com.aventador.ATMP.IdentifyEntry;
 import com.aventador.clientUI.*;
 
 public class App {
     public static void main(String[] args) {
 
-        new identifyEntry();
+        new IdentifyEntry();
 
         //new Welcome();
 
@@ -18,7 +18,11 @@ public class App {
 
     public static void test() {
 
-        new TransferSuccessfully();
+        new PrintVoucher();
+
+        //new MoreOption();
+
+        //new TransferSuccessfully();
 
         //new ContactMe();
 

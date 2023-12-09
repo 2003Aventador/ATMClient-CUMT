@@ -3,12 +3,10 @@ package com.aventador.domain;
 import com.aventador.util.GetCash;
 import com.aventador.util.PutCash;
 
-import java.util.Random;
-
 public final class CardSlot {
 
-    //卡槽中刚被放入的的金额数
-    public static double cashAmount;
+    //卡槽中刚被放入/刚被吐出的金额数
+    public static double cashAmountJustNow;
 
     //ATM今日可取的总金额数
     public static double totalCash;

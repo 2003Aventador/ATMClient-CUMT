@@ -1,6 +1,7 @@
 package com.aventador.domain;
 
 import com.aventador.util.CustomerInfoUtil;
+import com.aventador.util.TransactionDetails;
 
 import java.util.HashMap;
 
@@ -33,6 +34,10 @@ public class Customer {
         return balance;
     }
 
+    public String getPhone() {
+        return phoneNumber;
+    }
+
     public String getName() {
         return name;
     }
@@ -57,6 +62,7 @@ public class Customer {
         CustomerInfoUtil.user.balance -= amount;
         CustomerInfoUtil.transferCustomer.balance += amount;
         CustomerInfoUtil.writeInfo();
+        TransactionDetails.writeInfo(3, 0);
     }
 
     @Override

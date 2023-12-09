@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class MoreOption extends JFrame {
 
-    JButton jb1 = new JButton("打印凭证");
+    JButton jb1 = new JButton("打印交易明细");
     JButton jb2 = new JButton("联系我们");
     JButton jb3 = new JButton("返回");
 
