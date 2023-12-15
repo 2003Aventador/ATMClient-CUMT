@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.util.Random;
 
 public class PleaseWait3s extends JFrame {
@@ -24,7 +25,7 @@ public class PleaseWait3s extends JFrame {
 
         //取款机今日可用余额生成
         Random r = new Random();
-        CardSlot.totalCash = r.nextDouble(80000) + 10000;
+        CardSlot.totalCash = new BigDecimal("" + r.nextDouble(80000) + 10000);
         System.out.println("source=CustomerInfoUtil ATM机中今日可取的金额数：" + CardSlot.totalCash);
 
         //不能直接使用Thread.Sleep方法，此方法会使整个线程睡眠3秒导致组件无法加载

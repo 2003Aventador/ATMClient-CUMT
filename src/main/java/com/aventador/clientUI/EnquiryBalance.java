@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 public class EnquiryBalance extends JFrame {
 
@@ -124,7 +125,7 @@ public class EnquiryBalance extends JFrame {
 
         try {
             totalBalance.setText("" + CustomerInfoUtil.user.getBalance());
-            availableBalance.setText("" + CustomerInfoUtil.user.getBalance() * 0.2);
+            availableBalance.setText("" + CustomerInfoUtil.user.getBalance().multiply(new BigDecimal("0.2")));
         } catch (NullPointerException k) {
             System.out.println("EnquiryBalance界面没有打开初始化代码导致user为空");
         }

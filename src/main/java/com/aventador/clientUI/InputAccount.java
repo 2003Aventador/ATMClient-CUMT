@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 public class InputAccount extends JFrame implements MouseListener {
 
@@ -84,7 +85,10 @@ public class InputAccount extends JFrame implements MouseListener {
                     if (user.getAccount().equals(account)) {
                         new InputPassword();
                         CustomerInfoUtil.user = user;
-                        CustomerInfoUtil.customerTodayAvailableCash = Math.min(user.getBalance() * 0.2, 50000);
+                        //CustomerInfoUtil.customerTodayAvailableCash = Math.min(user.getBalance() * 0.2, 50000);
+                        CustomerInfoUtil.customerTodayAvailableCash =
+                                BigDecimal.valueOf(Math.min(user.getBalance().multiply(new BigDecimal("0.2")).doubleValue(),
+                                        50000));
                         this.dispose();
                     }
                 }

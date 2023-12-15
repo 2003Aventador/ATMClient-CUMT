@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 public class GetCash extends JFrame {
 
@@ -34,24 +35,28 @@ public class GetCash extends JFrame {
                 String decimalText = decimalTextField.getText();
 
                 try {
-                    double amount = Double.parseDouble(integerText + "." + decimalText);
+                    BigDecimal amount = new BigDecimal("" + Double.parseDouble(integerText + "." + decimalText));
 
                     //判断用户是否能取款成功
 
                     //生成虚假测试信息
                     //CustomerInfoUtil.makeTestInfo();
                     //用户可取款金额
-                    double customerAvailable = CustomerInfoUtil.customerTodayAvailableCash;
+                    BigDecimal customerAvailable = CustomerInfoUtil.customerTodayAvailableCash;
                     try {
                         System.out.println("========================================================");
                         System.out.println("source==GetCash 取款前user信息为：" + CustomerInfoUtil.user.toString());
                         System.out.println("source==GetCash 取款前取款机可用余额为：" + CardSlot.totalCash);
                         System.out.println("source==GetCash 今日用户可取款金额为：" + CustomerInfoUtil.customerTodayAvailableCash);
-                        if (amount <= Math.min(customerAvailable, CardSlot.totalCash)) {
+//                        if (amount <= Math.min(customerAvailable, CardSlot.totalCash)) {
+                        if (amount.doubleValue() <= Math.min(customerAvailable.doubleValue(), CardSlot.totalCash.doubleValue())) {
                             //取款成功
-                            CustomerInfoUtil.user.setBalance(CustomerInfoUtil.user.getBalance() - amount);
-                            CardSlot.totalCash -= amount;
-                            CustomerInfoUtil.customerTodayAvailableCash -= amount;
+//                            CustomerInfoUtil.user.setBalance(CustomerInfoUtil.user.getBalance() - amount);
+                            CustomerInfoUtil.user.setBalance(CustomerInfoUtil.user.getBalance().subtract(amount));
+//                            CardSlot.totalCash -= amount;
+                            CardSlot.totalCash = CardSlot.totalCash.subtract(amount);
+//                            CustomerInfoUtil.customerTodayAvailableCash -= amount;
+                            CustomerInfoUtil.customerTodayAvailableCash = CustomerInfoUtil.customerTodayAvailableCash.subtract(amount);
                             TransactionDetails.writeInfo(2, amount);
                             System.out.println("source==GetCash 取款后user信息为：" + CustomerInfoUtil.user.toString());
                             System.out.println("source==GetCash 取款后取款机可用余额为：" + CardSlot.totalCash);
@@ -59,14 +64,17 @@ public class GetCash extends JFrame {
                             //等待取钞界面
                             new WaitForGetMoney();
                             dispose();
-                        } else if (amount > CustomerInfoUtil.user.getBalance()) {
+                        } else if (amount.doubleValue() > CustomerInfoUtil.user.getBalance().doubleValue()) {
+//                        } else if (amount > CustomerInfoUtil.user.getBalance()) {
                             //您的余额不足
                             JOptionPane.showMessageDialog(GetCash.this, "您的余额不足！");
                             System.out.println("========================================================");
-                        } else if (amount > CustomerInfoUtil.customerTodayAvailableCash) {
+                        } else if (amount.doubleValue() > CustomerInfoUtil.customerTodayAvailableCash.doubleValue()) {
+//                        } else if (amount > CustomerInfoUtil.customerTodayAvailableCash) {
                             JOptionPane.showMessageDialog(GetCash.this, "您今日的取款额度不足！");
                             System.out.println("========================================================");
-                        } else if (amount > CardSlot.totalCash) {
+                        } else if (amount.doubleValue() > CardSlot.totalCash.doubleValue()) {
+//                        } else if (amount > CardSlot.totalCash) {
                             //取款机现金不足，请到柜台办理业务
                             JOptionPane.showMessageDialog(GetCash.this, "ATM机现金不足，请到柜台办理业务!");
                             System.out.println("========================================================");

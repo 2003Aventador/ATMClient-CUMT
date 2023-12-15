@@ -4,6 +4,7 @@ import cn.hutool.core.io.FileUtil;
 import com.aventador.domain.CardSlot;
 import com.aventador.domain.Customer;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -24,13 +25,13 @@ public final class CustomerInfoUtil {
 
     //当前用户可取款金额
     //为确保银行正常运行，用户每日可取金额不大于（五万 || 用户余额的百分之20）
-    public static double customerTodayAvailableCash = 0;
+    public static BigDecimal customerTodayAvailableCash = new BigDecimal("0");
 
     //转入对象账户
     public static Customer transferCustomer;
 
     //转账金额
-    public static double transferAmount;
+    public static BigDecimal transferAmount;
 
     private final static String[] path = {
             "C:\\Users\\lenovo\\Desktop\\Code\\JavaWeb\\ATMSystem\\UserInfo\\normalUserInfo.txt",
@@ -50,7 +51,7 @@ public final class CustomerInfoUtil {
                 String account = arr[0].split("=")[1];
                 String password = arr[1].split("=")[1];
                 String name = arr[2].split("=")[1];
-                double balance = Double.parseDouble(arr[3].split("=")[1]);
+                BigDecimal balance = new BigDecimal("" + Double.parseDouble(arr[3].split("=")[1]));
                 String phone = arr[4].split("=")[1];
                 Customer customer = new Customer(account, password, name, balance, phone);
                 allCustomers.add(customer);
@@ -123,15 +124,15 @@ public final class CustomerInfoUtil {
 
         //生成虚假用户
         user = new Customer("123456789", "123456",
-                "nobody", 521000.1314, "13137447066");
+                "nobody", new BigDecimal("521000.1314"), "13137447066");
 
         //取款机今日可用余额生成
         Random r = new Random();
-        CardSlot.totalCash = r.nextDouble(80000) + 10000;
+        CardSlot.totalCash = new BigDecimal("" + r.nextDouble(80000) + 10000);
         System.out.println("source=CustomerInfoUtil ATM机中今日可取的金额数：" + CardSlot.totalCash);
 
         //用户今日可取款金额生成
-        customerTodayAvailableCash = Math.min(user.getBalance() * 0.2, 50000);
+        customerTodayAvailableCash = new BigDecimal("" + Math.min(user.getBalance().multiply(new BigDecimal("0.2")).doubleValue(), 50000));
     }
 
 

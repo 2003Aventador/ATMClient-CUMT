@@ -2,4 +2,4 @@ account=101904658&password=123456&name=firstone&balance=11001.560000000001&phone
 account=987654321&password=654321&name=iamsky&balance=2178245.0&phoneNumber=19800565670
 account=292641234&password=987456&name=itsanewone&balance=55965.2&phoneNumber=17366981379
 account=820393207&password=594213&name=zhangbobin&balance=975000.0&phoneNumber=19505215670
-account=805539325&password=118919&name=aventador&balance=1.0245978E7&phoneNumber=17633930118
+account=805539325&password=118919&name=aventador&balance=102459787.12345&phoneNumber=17633930118

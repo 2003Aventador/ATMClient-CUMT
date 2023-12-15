@@ -57,7 +57,8 @@ public class DepositSuccessfully extends JFrame {
         try {
             for (Customer eachUser : CustomerInfoUtil.normalUsers) {
                 if (eachUser.getAccount().equals(CustomerInfoUtil.user.getAccount())) {
-                    eachUser.setBalance(eachUser.getBalance() + CardSlot.cashAmountJustNow);
+                    //eachUser.setBalance(eachUser.getBalance() + CardSlot.cashAmountJustNow);
+                    eachUser.setBalance(eachUser.getBalance().add(CardSlot.cashAmountJustNow));
                 }
             }
         } catch (NullPointerException k) {

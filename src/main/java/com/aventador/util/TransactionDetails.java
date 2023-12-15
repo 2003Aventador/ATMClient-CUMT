@@ -5,6 +5,7 @@ import com.aventador.domain.CardSlot;
 import com.aventador.domain.Customer;
 import com.aventador.domain.Transaction;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public final class TransactionDetails {
@@ -22,7 +23,7 @@ public final class TransactionDetails {
 
 
     //立即写入新交易信息
-    public static void writeInfo(int option, double amount) {
+    public static void writeInfo(int option, BigDecimal amount) {
         if (option == 1) {
             //存款
             actor = new Transaction(CustomerInfoUtil.user.getAccount(), CustomerInfoUtil.user.getAccount(),
@@ -58,7 +59,7 @@ public final class TransactionDetails {
             int option = Integer.parseInt(info[3].split(":")[1]);//账户进行的操作
             String active = info[4].split(":")[1];//交易发起人账户
             String passive = info[5].split(":")[1];//被动交易账户
-            double amount = Double.parseDouble(info[6].split(":")[1]);//交易金额
+            BigDecimal amount = new BigDecimal("" + Double.parseDouble(info[6].split(":")[1]));//交易金额
             String localTime = info[7].split(":")[1];//交易时间
 
             //找到账户为account的所有用户信息并加载到内存

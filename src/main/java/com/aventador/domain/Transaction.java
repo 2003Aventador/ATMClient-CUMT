@@ -2,6 +2,7 @@ package com.aventador.domain;
 
 import com.aventador.util.CustomerInfoUtil;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public final class Transaction {
@@ -17,10 +18,10 @@ public final class Transaction {
         2.取款
         3.转账
      */
-    private final double amount;//交易金额
+    private final BigDecimal amount;//交易金额
     private String localTime;//交易时间
 
-    public Transaction(String account, String active, String passive, int option, double amount, String localTime) {
+    public Transaction(String account, String active, String passive, int option, BigDecimal amount, String localTime) {
         Customer cus = CustomerInfoUtil.getCus(account);
         assert cus != null;
         this.account = cus.getAccount();
@@ -29,7 +30,7 @@ public final class Transaction {
         this.active = active;
         this.passive = passive;
         this.option = option;
-        this.amount = amount;
+        this.amount = new BigDecimal("" + amount.doubleValue());
         if (localTime.equals("null")) {
             LocalDateTime now = LocalDateTime.now();
             //年份
@@ -74,7 +75,7 @@ public final class Transaction {
         return "Account:" + account + "&Name:" + name + "&phone:" + phone +
                 "&option:" + option +
                 "&Active account:" + active + "&Passive account:" + passive +
-                "&transaction amount:" + amount + "&transaction time:" + localTime;
+                "&transaction amount:" + amount.doubleValue() + "&transaction time:" + localTime;
     }
 
     public String getAccount() {
@@ -89,7 +90,7 @@ public final class Transaction {
         return option;
     }
 
-    public double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 

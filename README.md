@@ -39,7 +39,7 @@
       2. GetCash--卡槽专用调用类
       3. PushCash--卡槽专用调用类
       4. TransactionDetails--交易凭证控制类
-3. image文件夹说明
+3. assets文件夹说明
    1. background--客户端背景图片
    2. RegisterBack--管理员端背景图片
    3. WeChat--联系我们界面联系方式
@@ -63,19 +63,20 @@
 
 5. 所有控件的放置方法使用的是setBounds方法，可能在不同屏幕上实现显示效果有差异；至于界面是否美观，可自调坐标
 
-6. 将在不久的时间内将double存储金额的方式改成BigDecimal存储金额防止丢失精度
-
 7. down完程序之后如果运行不了，在确保JDK、Maven版本合适的情况下，请检查下图中的配置：
 
    ​	位置：File->Project Structure
 
-   ![image-20231209144945542](C:\Users\lenovo\Desktop\Code\Typora\image\image-20231209144945542.png)
-
-
+   ![image-20231209144945542](assets/image-20231209144945542.png)
 
 ## 更新
 
 ### 2023-12-9
 
 1. 添加凭证打印功能
-2. 修复一些小bug
+3. 修复一些小bug
+
+### 2023-12-15
+
+1. 更新金额因为double存储导致的精度损失问题
+

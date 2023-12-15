@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public final class RegisterUsers extends JFrame implements MouseListener {
@@ -122,7 +123,7 @@ public final class RegisterUsers extends JFrame implements MouseListener {
         if (source == confirm) {
             try {
                 Customer newCustomer = new Customer(accountText.getText(), passwordText.getText(), nameText.getText(),
-                        Double.parseDouble(balanceText.getText()), phoneText.getText());
+                        new BigDecimal("" + Double.parseDouble(balanceText.getText())), phoneText.getText());
                 //新用户写入文件-去重操作
                 for (Customer eachUser : CustomerInfoUtil.allUsers) {
                     if (eachUser.getAccount().equals(newCustomer.getAccount())) {

@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 public class TransferInputAmount extends JFrame {
 
@@ -33,10 +34,11 @@ public class TransferInputAmount extends JFrame {
                 String decimalText = decimalTextField.getText();
 
                 try {
-                    double amount = Double.parseDouble(integerText + "." + decimalText);
-                    double userTransferAmount = CustomerInfoUtil.user.getBalance();
+                    BigDecimal amount = new BigDecimal("" + Double.parseDouble(integerText + "." + decimalText));
+                    BigDecimal userTransferAmount = CustomerInfoUtil.user.getBalance();
                     try {
-                        if (amount <= userTransferAmount) {
+//                        if (amount <= userTransferAmount) {
+                        if (amount.doubleValue() <= userTransferAmount.doubleValue()) {
                             //转账信息确认
                             CustomerInfoUtil.transferAmount = amount;
                             new TransferConfirmedInfo();

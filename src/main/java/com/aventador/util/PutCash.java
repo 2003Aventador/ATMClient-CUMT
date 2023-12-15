@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 public final class PutCash extends JFrame {
     private final JTextField integerTextField = new JTextField();
@@ -35,13 +36,14 @@ public final class PutCash extends JFrame {
                     System.out.println("========================================================");
                     System.out.println("source==PutCash 存款前user信息为：" + CustomerInfoUtil.user);
                     System.out.println("source==PutCash 存款前取款机可用余额为：" + CardSlot.totalCash);
-                    double amount = Double.parseDouble(integerText + "." + decimalText);
+                    BigDecimal amount = new BigDecimal("" + Double.parseDouble(integerText + "." + decimalText));
                     System.out.println("source==PutCash 卡槽中放入的金额数为：" + amount);
-                    CardSlot.cashAmountJustNow = amount;
-                    CardSlot.totalCash += amount;
+                    CardSlot.cashAmountJustNow = new BigDecimal("" + amount);
+                    //CardSlot.totalCash += amount;
+                    CardSlot.totalCash = CardSlot.totalCash.add(amount);
                     integerTextField.setText("");
                     decimalTextField.setText("");
-                    TransactionDetails.writeInfo(1, 0);
+                    TransactionDetails.writeInfo(1, new BigDecimal("0"));
                     new DepositSuccessfully();
                     System.out.println("source==PutCash 存款后user信息为：" + CustomerInfoUtil.user);
                     System.out.println("source==PutCash 存款后取款机可用余额为：" + CardSlot.totalCash);
