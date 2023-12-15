@@ -39,7 +39,7 @@
       2. GetCash--卡槽专用调用类
       3. PushCash--卡槽专用调用类
       4. TransactionDetails--交易凭证控制类
-3. assets文件夹说明
+3. image文件夹说明
    1. background--客户端背景图片
    2. RegisterBack--管理员端背景图片
    3. WeChat--联系我们界面联系方式
@@ -67,7 +67,7 @@
 
    ​	位置：File->Project Structure
 
-   ![image-20231209144945542](assets/image-20231209144945542.png)
+   ![image-20231209144945542](image/image-20231209144945542.png)
 
 ## 更新
 
